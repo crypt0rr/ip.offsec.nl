@@ -1,0 +1,15 @@
+{
+  "name": "ip.offsec.nl",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Public IP and request diagnostics utility for ip.offsec.nl",
+  "scripts": {
+    "dev": "wrangler pages dev public --compatibility-date=2026-07-05",
+    "deploy": "wrangler pages deploy public --project-name ip-offsec-nl",
+    "test": "node tests/worker.test.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.24.3"
+  }
+}
