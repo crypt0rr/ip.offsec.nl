@@ -100,6 +100,7 @@ export function collectRequestInfo(request, url = new URL(request.url)) {
     clientTcpRtt: numberOrNull(cf.clientTcpRtt),
     clientQuicRtt: numberOrNull(cf.clientQuicRtt),
     method: request.method,
+    scheme: url.protocol.replace(":", ""),
     host: url.host,
     path: url.pathname,
     query: url.search || null,
@@ -207,6 +208,7 @@ function helpResponse(head = false) {
   const body = [
     "ip.offsec.nl endpoints",
     "",
+    "curl http://ip.offsec.nl",
     "curl https://ip.offsec.nl",
     "curl https://ip.offsec.nl/ip",
     "curl https://ip.offsec.nl/json",
@@ -268,6 +270,7 @@ function renderPage(info) {
     ["TLS cipher", info.tlsCipher],
     ["TCP RTT", info.clientTcpRtt === null ? null : `${info.clientTcpRtt} ms`],
     ["QUIC RTT", info.clientQuicRtt === null ? null : `${info.clientQuicRtt} ms`],
+    ["Scheme", info.scheme],
     ["User agent", info.userAgent],
     ["Accept-Language", info.acceptLanguage],
     ["Request path", `${info.path}${info.query || ""}`]
@@ -311,6 +314,7 @@ function renderPage(info) {
     <section class="section" aria-labelledby="programmatic-title">
       <h2 id="programmatic-title">Programmatic use</h2>
       <div class="commands">
+        ${command("curl http://ip.offsec.nl")}
         ${command("curl https://ip.offsec.nl")}
         ${command("curl https://ip.offsec.nl/json")}
         ${command("curl -H 'Accept: application/json' https://ip.offsec.nl")}
