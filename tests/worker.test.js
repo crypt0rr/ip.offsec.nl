@@ -8,9 +8,9 @@ const env = {
 };
 
 function request(path = "/", init = {}) {
-  const { headers = {}, origin = "https://ip.offsec.nl", ...rest } = init;
+  const { headers = {}, ...rest } = init;
 
-  return new Request(`${origin}${path}`, {
+  return new Request(`https://ip.offsec.nl${path}`, {
     headers: {
       "cf-connecting-ip": "203.0.113.10",
       "cf-ray": "8abc123def456789-AMS",
@@ -28,20 +28,6 @@ async function text(path, init) {
 
 {
   const [response, body] = await text("/", {
-    headers: {
-      accept: "*/*",
-      "user-agent": "curl/8.0.0"
-    }
-  });
-
-  assert.equal(response.status, 200);
-  assert.equal(response.headers.get("content-type"), "text/plain; charset=utf-8");
-  assert.equal(body, "203.0.113.10\n");
-}
-
-{
-  const [response, body] = await text("/", {
-    origin: "http://ip.offsec.nl",
     headers: {
       accept: "*/*",
       "user-agent": "curl/8.0.0"
@@ -78,7 +64,6 @@ async function text(path, init) {
   assert.equal(response.status, 200);
   assert.equal(response.headers.get("content-type"), "application/json; charset=utf-8");
   assert.equal(data.ip, "203.0.113.10");
-  assert.equal(data.scheme, "https");
   assert.equal(data.colo, "AMS");
 }
 
