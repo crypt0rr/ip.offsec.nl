@@ -31,12 +31,3 @@ npm run dev
 ```
 
 The app is designed for Cloudflare Pages advanced mode. Deploy the `public/` directory as the Pages output directory. The `_worker.js` file handles dynamic responses and falls back to static assets.
-
-## Cloudflare Pages
-
-Recommended project settings:
-
-- Project name: `ip-offsec-nl`
-- Build command: none
-- Build output directory: `public`
-- Custom domain: `ip.offsec.nl`
