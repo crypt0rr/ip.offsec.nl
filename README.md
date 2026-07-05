@@ -4,13 +4,14 @@ Public IP and request diagnostics utility, inspired by `ident.me` and `ifconfig.
 
 ## Behavior
 
-- Browser requests to `https://ip.offsec.nl` render a small diagnostics page.
-- CLI-style requests such as `curl https://ip.offsec.nl` return only the public IP plus a newline.
+- Browser requests to `http://ip.offsec.nl` and `https://ip.offsec.nl` render a small diagnostics page.
+- CLI-style requests such as `curl http://ip.offsec.nl` and `curl https://ip.offsec.nl` return only the public IP plus a newline.
 - `Accept: application/json` or `/json` returns structured request metadata.
 
 ## Endpoints
 
 ```sh
+curl http://ip.offsec.nl
 curl https://ip.offsec.nl
 curl https://ip.offsec.nl/ip
 curl https://ip.offsec.nl/json
