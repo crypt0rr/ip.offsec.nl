@@ -180,7 +180,9 @@ function baseHeaders(extra = {}) {
 
 function dynamicHeaders(contentType) {
   return baseHeaders({
-    "Cache-Control": "no-store",
+    "Cache-Control": "no-store, no-cache, max-age=0, must-revalidate, private",
+    "Expires": "0",
+    "Pragma": "no-cache",
     "Content-Type": contentType
   });
 }
@@ -235,7 +237,7 @@ function methodNotAllowed(method) {
     status: 405,
     headers: baseHeaders({
       "Allow": "GET, HEAD, OPTIONS",
-      "Cache-Control": "no-store",
+      "Cache-Control": "no-store, no-cache, max-age=0, must-revalidate, private",
       "Content-Type": "text/plain; charset=utf-8"
     })
   });
