@@ -36,6 +36,9 @@ async function text(path, init) {
 
   assert.equal(response.status, 200);
   assert.equal(response.headers.get("content-type"), "text/plain; charset=utf-8");
+  assert.equal(response.headers.get("cache-control"), "no-store, no-cache, max-age=0, must-revalidate, private");
+  assert.equal(response.headers.get("pragma"), "no-cache");
+  assert.equal(response.headers.get("expires"), "0");
   assert.equal(body, "203.0.113.10\n");
 }
 
